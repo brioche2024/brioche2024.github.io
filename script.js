@@ -6,6 +6,15 @@ function moveRandomEl(elm) {
 
 const moveRandom = document.querySelector("#move-random");
 
+let count = 4;
+
 moveRandom.addEventListener("mouseenter", function (e) {
-  moveRandomEl(e.target);
+  if (count > 0) {
+    moveRandomEl(e.target); 
+    count--;
+  }
+
+  if (count === 0) {
+    moveRandom.style.display = "none";
+  }
 });
