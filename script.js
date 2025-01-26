@@ -8,7 +8,7 @@ const moveRandom = document.querySelector("#move-random");
 
 let count = 4;
 
-moveRandom.addEventListener("mouseenter", function (e) {
+moveRandom.addEventListener("pointerover", function (e) {
   if (count > 0) {
     moveRandomEl(e.target); 
     count--;
