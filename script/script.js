@@ -10,7 +10,7 @@ let count = 4;
 
 moveRandom.addEventListener("pointerover", function (e) {
   if (count > 0) {
-    moveRandomEl(e.target); 
+    moveRandomEl(e.target);
     count--;
   }
 
