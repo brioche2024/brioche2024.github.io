@@ -6,7 +6,7 @@ function moveRandomEl(elm) {
 
 const moveRandom = document.querySelector("#move-random");
 
-let count = 2;
+let count = 3;
 
 moveRandom.addEventListener("pointerover", function (e) {
   if (count > 0) {
