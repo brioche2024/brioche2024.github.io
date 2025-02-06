@@ -41,3 +41,13 @@ body {
   border-radius: 8px;
   box-shadow: 0.5rem 1rem 3rem hsl(0, 0%, 0%, 0.3);
 }
+
+canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; /* Ignore les clics sur le canvas */
+  z-index: -1; /* Met en arrière-plan */
+}

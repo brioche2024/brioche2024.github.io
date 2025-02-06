@@ -41,8 +41,13 @@ function askQuestions() {
   }
 }
   
-const choice = document.querySelector("#yes-button");
-choice.addEventListener("click", () => {
-  askQuestions();
-});
-  
+const choice = document.querySelector("#sondage");
+if (choice) {
+  choice.addEventListener("click", () => {
+    askQuestions();
+  });
+}
+
+const path = window.location.pathname;
+const fileName = path.substring(path.lastIndexOf("/") + 1);
+//sendToDiscord(`Merci d'avoir dit Oui sur la page ${fileName} 🎆`);
