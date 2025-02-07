@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Disponibilité 🗓</title>
+    <link rel="stylesheet" href="../style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Choisis une disponibilité pour la Saint-Valentin</h1>
+      
+      <div class="date-container">
+        <label for="availability">(Pas obligé que ça soit le 14)</label><br><br>
+        <input type="date" id="availability" name="availability" value="2025-02-14">
+      </div>
+
+      <div class="selection-buttons">
+        <button id="selectButton" disabled>Sélectionner</button>
+        <button id="nextButton" style="display: none;">Suivant</button>
+      </div>
+
+      <div id="confirmationMessage" style="display: none; color: green; margin-top: 15px;">Merci ! La date a bien été enregistrée.</div>
+    </div>
+
+    <script src="../script/notif.js"></script>
+    <script>
+      let selectedDate = null;
+
+      // Activation du bouton "Sélectionner" lorsque l'utilisateur choisit une date
+      document.getElementById('availability').addEventListener('change', (event) => {
+        selectedDate = event.target.value;
+        document.getElementById('selectButton').disabled = !selectedDate;
+      });
+
+      document.getElementById('selectButton').addEventListener('click', () => {
+        if (selectedDate) {
+          const message = `Réponse reçue de la date choisie : ${selectedDate}`;
+          
+          sendToDiscord(message);
+          document.getElementById('nextButton').style.display = 'inline-block';
+          document.getElementById('confirmationMessage').style.display = 'block';
+        }
+      });
+
+      document.getElementById('nextButton').addEventListener('click', () => {
+        window.location.href = 'menu.html';
+      });
+    </script>
+  </body>
+</html>
