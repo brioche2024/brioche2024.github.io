@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Oui 🎆</title>
+    <link rel="stylesheet" href="../style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Choisis ce que tu veux manger pour la Saint-Valentin</h1>
+      
+      <div class="image-container">
+        <div class="meal-option">
+          <img src="../images/italie.png" alt="Italien" data-meal="Italien">
+          <p>Italien</p>
+        </div>
+        <div class="meal-option">
+          <img src="../images/japan.webp" alt="Japonais" data-meal="Japonais">
+          <p>Japonais</p>
+        </div>
+        <div class="meal-option">
+          <img src="../images/china.webp" alt="Chinois" data-meal="Chinois">
+          <p>Chinois</p>
+        </div>
+      </div>
+
+      <div class="image-container">
+        <div class="meal-option">
+          <img src="../images/france.webp" alt="Français" data-meal="Français">
+          <p>Français</p>
+        </div>
+        <div class="meal-option">
+          <img src="../images/coreen.png" alt="Coréen" data-meal="Coréen">
+          <p>Coréen</p>
+        </div>
+        <div class="meal-option">
+          <button id="suggestionButton">Ta propre suggestion</button>
+        </div>
+      </div>
+
+      <div class="selection-buttons">
+        <button id="selectButton" disabled>Sélectionner</button>
+        <button id="nextButton" style="display: none">Suivant</button>
+      </div>
+
+      <div
+        id="confirmationMessage"
+        style="display: none; color: green; margin-top: 15px"
+      >
+        Merci ! Ce que tu veux manger a bien été enregistrée.
+      </div>
+    </div>
+
+    <script src="../script/notif.js"></script>
+    <script>
+      let selectedMeal = null;
+
+      document.querySelectorAll('.meal-option img').forEach(img => {
+        img.addEventListener('click', () => {
+          document.querySelectorAll('.meal-option img').forEach(i => i.classList.remove('selected'));
+          img.classList.add('selected');
+
+          selectedMeal = img.dataset.meal;
+          document.getElementById('selectButton').disabled = false;
+        });
+      });
+
+      document.getElementById('selectButton').addEventListener('click', () => {
+        if (selectedMeal) {
+          const message = `Réponse reçue de la question 1: ${selectedMeal}`;
+          sendToDiscord(message);
+          document.getElementById("selectButton").style.display = "none";
+          document.getElementById("nextButton").style.display = "inline-block";
+          document.getElementById("confirmationMessage").style.display = "block";
+        }
+      });
+
+      const next = document.getElementById("nextButton");
+      if (next) {
+        next.addEventListener("click", () => {
+          window.location.href = "thanks.html";
+        });
+      }
+
+    </script>
+  </body>
+</html>
