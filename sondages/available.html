@@ -9,43 +9,77 @@
   <body>
     <div class="container">
       <h1>Choisis une disponibilité pour la Saint-Valentin</h1>
-      
+      <div
+        class="tenor-gif-embed"
+        data-postid="19414919"
+        data-share-method="host"
+        data-aspect-ratio="1"
+        data-width="100%"
+      >
+        <a
+          href="https://tenor.com/view/puglie-pug-puglie-pug-dog-puppy-gif-19414919"
+          >Puglie Pug Puglie GIF</a
+        >from
+        <a href="https://tenor.com/search/puglie+pug-gifs">Puglie Pug GIFs</a>
+      </div>
+      <script
+        type="text/javascript"
+        async
+        src="https://tenor.com/embed.js"
+      ></script>
+
       <div class="date-container">
-        <label for="availability">(Pas obligé que ça soit le 14)</label><br><br>
-        <input type="date" id="availability" name="availability" value="2025-02-14">
+        <label for="availability">(Pas obligé que ça soit le 14)</label
+        ><br /><br />
+        <input
+          type="date"
+          id="availability"
+          name="availability"
+          value="2025-02-14"
+        />
       </div>
 
       <div class="selection-buttons">
-        <button id="selectButton" disabled>Sélectionner</button>
-        <button id="nextButton" style="display: none;">Suivant</button>
+        <button id="selectButton">Sélectionner</button>
+        <button id="nextButton" style="display: none">Suivant</button>
       </div>
 
-      <div id="confirmationMessage" style="display: none; color: green; margin-top: 15px;">Merci ! La date a bien été enregistrée.</div>
+      <div
+        id="confirmationMessage"
+        style="display: none; color: green; margin-top: 15px"
+      >
+        Merci ! La date a bien été enregistrée.
+      </div>
     </div>
 
     <script src="../script/notif.js"></script>
     <script>
-      let selectedDate = null;
+      let selectedDate = "2025-02-14";
 
-      // Activation du bouton "Sélectionner" lorsque l'utilisateur choisit une date
-      document.getElementById('availability').addEventListener('change', (event) => {
-        selectedDate = event.target.value;
-        document.getElementById('selectButton').disabled = !selectedDate;
-      });
+      document
+        .getElementById("availability")
+        .addEventListener("change", (event) => {
+          selectedDate = event.target.value;
+        });
 
-      document.getElementById('selectButton').addEventListener('click', () => {
+      document.getElementById("selectButton").addEventListener("click", () => {
         if (selectedDate) {
           const message = `Réponse reçue de la date choisie : ${selectedDate}`;
-          
+
           sendToDiscord(message);
-          document.getElementById('nextButton').style.display = 'inline-block';
-          document.getElementById('confirmationMessage').style.display = 'block';
+          document.getElementById("selectButton").style.display = "none";
+          document.getElementById("nextButton").style.display = "inline-block";
+          document.getElementById("confirmationMessage").style.display = "block";
+            
         }
       });
 
-      document.getElementById('nextButton').addEventListener('click', () => {
-        window.location.href = 'menu.html';
-      });
+      const next = document.getElementById("nextButton");
+      if (next) {
+        next.addEventListener("click", () => {
+          window.location.href = "menu.html";
+        });
+      }
     </script>
   </body>
 </html>

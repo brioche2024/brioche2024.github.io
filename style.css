@@ -82,3 +82,60 @@ input[type="date"] {
 .date-container {
   margin-top: 20px;
 }
+
+.meal-option {
+  text-align: center;
+}
+
+img {
+  cursor: pointer;
+  border: 2px solid transparent;
+  border-radius: 8px;
+}
+
+img.selected {
+  border: 4px solid #ff5733;
+}
+
+p {
+  margin-top: 8px;
+  font-size: 14px;
+}
+
+.meal-option {
+  text-align: center;
+}
+
+.meal-option img, 
+.meal-option button {
+  width: 160px;
+  height: 150px;
+  cursor: pointer;
+  transition: transform 0.2s, border-color 0.2s;
+}
+
+.meal-option img:hover, 
+.meal-option button:hover {
+  transform: scale(1.05);
+  border-color: #f39c12;
+}
+
+/* Style spécifique au bouton */
+#suggestionButton {
+  display: inline-block;
+  background-color: #f39c12;
+  color: white;
+  border: none;
+  text-align: center;
+  font-size: 16px;
+}
+
+#suggestionButton:focus {
+  outline: none;
+}
+
+.image-container {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}

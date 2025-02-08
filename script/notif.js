@@ -25,26 +25,21 @@ function sendToDiscord(message) {
     .catch((error) => console.error(error));
 }
 
-function askQuestions() {
+function askQuestion() {
   const mealChoice = prompt("Qu'est-ce que tu veux manger ?");
-  if (mealChoice) {
-    const restaurantType = prompt("Quel type de restaurant préfères-tu ? (ex : Italien, Sushi, etc.)");
-    const activityChoice = prompt("Quelles activités aimerais-tu faire ? (ex : cinéma, bowling, etc.)");
 
-    const message = `Réponse reçue : \n
-    Repas choisi : ${mealChoice}\n
-    Type de restaurant préféré : ${restaurantType}\n
-    Activité préférée : ${activityChoice}`;
+  const message = `Réponse reçue : Repas choisi : ${mealChoice}`;
+  document.getElementById("selectButton").style.display = "none";
+  document.getElementById("nextButton").style.display = "inline-block";
+  document.getElementById("confirmationMessage").style.display = "block";
 
-    // Envoie le message à Discord
-    sendToDiscord(message);
-  }
+  sendToDiscord(message);
 }
   
-const choice = document.querySelector("#sondage");
+const choice = document.querySelector("#suggestionButton");
 if (choice) {
   choice.addEventListener("click", () => {
-    askQuestions();
+    askQuestion();
   });
 }
 
