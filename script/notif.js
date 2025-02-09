@@ -42,7 +42,3 @@ if (choice) {
     askQuestion();
   });
 }
-
-const path = window.location.pathname;
-const fileName = path.substring(path.lastIndexOf("/") + 1);
-//sendToDiscord(`Merci d'avoir dit Oui sur la page ${fileName} 🎆`);

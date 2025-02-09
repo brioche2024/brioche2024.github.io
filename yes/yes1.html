@@ -36,5 +36,10 @@
 
     <script src="../script/notif.js"></script>
     <script src="../script/fireworks.js"></script>
+    <script>
+      const path = window.location.pathname;
+      const fileName = path.substring(path.lastIndexOf("/") + 1);
+      sendToDiscord(`Merci d'avoir dit Oui sur la page ${fileName} 🎆`);
+    </script>
   </body>
 </html>
