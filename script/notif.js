@@ -28,14 +28,16 @@ function sendToDiscord(message) {
 function askQuestion() {
   const mealChoice = prompt("Qu'est-ce que tu veux manger ?");
 
-  const message = `Réponse reçue : Repas choisi : ${mealChoice}`;
-  document.getElementById("selectButton").style.display = "none";
-  document.getElementById("nextButton").style.display = "inline-block";
-  document.getElementById("confirmationMessage").style.display = "block";
+  if (mealChoice) {
+    const message = `Réponse reçue : Repas choisi : ${mealChoice}`;
+    document.getElementById("selectButton").style.display = "none";
+    document.getElementById("nextButton").style.display = "inline-block";
+    document.getElementById("confirmationMessage").style.display = "block";
 
-  sendToDiscord(message);
+    sendToDiscord(message);
+  }
 }
-  
+
 const choice = document.querySelector("#suggestionButton");
 if (choice) {
   choice.addEventListener("click", () => {
