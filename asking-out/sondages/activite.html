@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Oui 🎆</title>
+    <link rel="stylesheet" href="../style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Choisis ce que tu veux faire</h1>
+
+      <div class="image-container">
+        <div class="activity-option">
+          <button class="activity-btn" data-activity="Musée">Musée</button>
+        </div>
+        <div class="activity-option">
+          <button class="activity-btn" data-activity="Peinture sur céramique">Peinture sur céramique</button>
+        </div>
+      </div>
+      <div class="image-container">
+        <div class="activity-option">
+          <button class="activity-btn" data-activity="Potterie">Potterie</button>
+        </div>
+        <div class="activity-option">
+          <button class="activity-btn" data-activity="Equitation">Equitation</button>
+        </div>
+      </div>
+
+      <div class="image-container">
+        <div class="activity-option">
+          <button class="activity-btn" data-activity="Pique-nique">Pique-nique</button>
+        </div>
+        <div class="activity-option">
+          <button class="activity-btn" data-activity="Atelier cuisine">Atelier cuisine</button>
+        </div>
+      </div>
+
+      <div class="image-container">
+        <div class="activity-option">
+          <button class="activity-btn" data-activity="Salle d'arcade">Salle d'arcade</button>
+        </div>
+        <div class="activity-option">
+          <button id="suggestionButton" data-redirect="thanks.html">Ta propre suggestion</button>
+        </div>
+      </div>
+
+      <div
+        id="confirmationMessage"
+        style="display: none; color: green; margin-top: 15px"
+      >
+        Merci ! L'activité a bien été enregistrée.
+      </div>
+
+      <div class="selection-buttons">
+        <button id="selectButton" disabled>Confirmer</button>
+      </div>
+
+    </div>
+
+    <script src="../script/notif.js"></script>
+    <script>
+      let selectedActivity = null;
+
+      document.querySelectorAll(".activity-btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          document
+            .querySelectorAll(".activity-btn")
+            .forEach((b) => b.classList.remove("selected"));
+          btn.classList.add("selected");
+
+          selectedActivity = btn.dataset.activity;
+          document.getElementById("selectButton").disabled = false;
+        });
+      });
+
+      document.getElementById("selectButton").addEventListener("click", () => {
+        if (selectedActivity) {
+          const message = `Réponse reçue de l'activité: ${selectedActivity}`;
+          sendToDiscord(message);
+          window.location.href = "thanks.html";
+        }
+      });
+
+      function askQuestionActivity(redirectUrl = "thanks.html") {
+        const activityChoice = prompt("Qu'est-ce que tu veux faire ?");
+
+        if (activityChoice && activityChoice.trim()) {
+          const message = `Réponse reçue : Activité choisie : ${activityChoice}`;
+          sendToDiscord(message);
+          window.location.href = redirectUrl;
+        }
+      }
+
+      const choice = document.querySelector("#suggestionButton");
+      if (choice) {
+        choice.addEventListener("click", () => {
+          const redirectUrl = choice.dataset.redirect || "thanks.html";
+          askQuestionActivity(redirectUrl);
+        });
+      }
+    </script>
+  </body>
+</html>
